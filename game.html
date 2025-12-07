@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>#LATE Run | Dodge Responsibility</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#a78bfa',
+                            DEFAULT: '#8b5cf6',
+                            dark: '#7c3aed',
+                            neon: '#f472b6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            touch-action: none;
+            /* Prevent pull-to-refresh on mobile */
+            overscroll-behavior: none;
+        }
+
+        #game-canvas {
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+            background: rgba(20, 20, 25, 0.9);
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white overflow-hidden h-screen w-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="p-4 flex justify-between items-center z-10 glass shrink-0">
+        <a href="index.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            <span class="font-bold hidden sm:inline">GO HOME</span>
+        </a>
+        <div class="text-xl md:text-2xl font-black italic tracking-tighter">
+            <span class="text-brand-light">DODGE</span> THE <span class="text-brand-neon">ALARM</span>
+        </div>
+        <div class="w-20 text-right font-mono font-bold text-brand-neon" id="score-display">00:00</div>
+    </header>
+
+    <!-- Game Container -->
+    <main class="flex-grow flex flex-col items-center justify-center relative p-4" id="game-container">
+
+        <div id="start-screen"
+            class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
+            <h1 class="text-5xl font-black mb-4 italic text-center">
+                RUN <span class="text-brand-neon">#LATE</span>
+            </h1>
+            <p class="text-gray-300 mb-8 text-center max-w-xs">
+                Don't let the alarm clocks wake you up.
+                <br>
+                <span class="text-brand-dark text-sm mt-2 block">(Blue pills slow down time)</span>
+            </p>
+            <button id="start-btn"
+                class="px-8 py-4 bg-brand-DEFAULT text-white font-bold text-xl rounded-full hover:bg-brand-neon hover:scale-105 transition-all shadow-[0_0_30px_rgba(139,92,246,0.6)] animate-pulse">
+                START RUNNING
+            </button>
+            <div class="mt-8 text-sm text-gray-500 font-mono">
+                <span class="hidden md:inline">← ARROWS TO MOVE →</span>
+                <span class="md:hidden">TAP LEFT / RIGHT TO MOVE</span>
+            </div>
+        </div>
+
+        <div id="game-over-screen"
+            class="hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/90 backdrop-blur-md">
+            <h2 class="text-6xl font-black mb-2 text-red-500 italic">YOU woke UP!</h2>
+            <p class="text-xl text-gray-300 mb-6">You survived for: <span id="final-score"
+                    class="text-brand-neon font-bold">0</span>s</p>
+
+            <p class="text-lg text-white mb-8 italic">"5 more minutes..."</p>
+
+            <button id="restart-btn"
+                class="px-8 py-3 bg-white text-black font-bold text-lg rounded-full hover:bg-brand-neon hover:text-white transition-all">
+                SNOOZE (TRY AGAIN)
+            </button>
+            <a href="index.html" class="mt-6 text-gray-500 hover:text-white text-sm">Return Home</a>
+        </div>
+
+        <canvas id="game-canvas"></canvas>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
