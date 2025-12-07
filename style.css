@@ -2,11 +2,15 @@
 
 html {
     scroll-behavior: smooth;
+    background-color: #000000;
+    /* Ensure background is black behind canvas */
 }
 
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: transparent;
+    /* Let canvas show through */
 }
 
 /* Custom Scrollbar */
